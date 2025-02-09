@@ -1,4 +1,6 @@
 # CS506-Final-Project-Repository
+# Group Members: 
+   Kaitlyn Davies, [Please add your names here] 
 # Description of the project
 
    For our final project we are interested in examining flight data. With the support of data from the FAA and NOAA we will discuss how weather affects flight delays. We aim to approach this question from the perspective of climate change and how emissions may affect local weather inturn affecting delays and making air travel more difficult as the world adapts to the current climate crisis. We hope to project how delays may worsen with climate change progression and offer solutions on how the aerospace industry may adapt to maintain high travel demand. 
