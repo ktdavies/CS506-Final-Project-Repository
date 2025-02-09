@@ -12,9 +12,9 @@
 # Goals
 A clear description of our goals within this project is as follows: 
    - Successfully predict flight delays based upon weather
-   - model how flight emissions may impact weather
+   - Model how flight emissions may impact weather
    - Examine how past emission increases have affected weather patterns 
-   - draw conclusions on how increased emissions may continue to affect air travel 
+   - Draw conclusions on how increased emissions may continue to affect air travel 
 
 
 # Data Needs and Collection Methods
