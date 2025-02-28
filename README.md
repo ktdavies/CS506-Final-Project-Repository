@@ -29,3 +29,11 @@ To visualize the data we will use a mix of different methods to make everything 
 
 # Test Plan 
    With a focus on our conclusion of predicting how progressive climate change may impact flight delays and air travel, we plan to train data from a time period with lower emission rates and the amount of delays seen during that period and compare it with more recent data.
+
+# Addressing Non-Weather Factors
+
+   To address the wide range of factors that contribute to flight delays beyond weather and climate, we will use datasets (e.g., from the FAA) that categorize delay causes. By focusing specifically on weather-related delays and normalizing for other variables like air traffic volume and operational disruptions, we can isolate the true impact of weather on flight schedules. Additionally, we will compare historical and current weather patterns to differentiate natural variability from climate change influences. By correlating these trends with emissions data, we aim to determine how climate change-driven weather patterns contribute to flight delays while accounting for non-weather factors.
+
+# Differentiating Natural vs. Climate-Change-Driven Weather
+
+   To differentiate between natural weather conditions and those influenced by climate change, we will compare historical weather patterns with recent conditions and examine how extreme weather events have become more frequent or intense over time. By correlating these trends with emissions data from the EPA and other sources, we aim to establish a connection between increasing emissions, changing weather patterns, and resulting flight delays.
