@@ -1,4 +1,4 @@
-# CS506-Final-Project-Repository — Midterm Report
+# CS506 — Midterm Report
 
 **YouTube Presentation Link:** [Insert link here]
 
