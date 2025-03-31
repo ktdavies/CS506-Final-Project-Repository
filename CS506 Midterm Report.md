@@ -1,6 +1,6 @@
 # CS506 — Midterm Report
 
-**YouTube Presentation Link:** [Insert link here]
+**YouTube Presentation Link:  https://youtu.be/7OXwi-nXl-I
 
 ## Group Members
 Kaitlyn Davies  
