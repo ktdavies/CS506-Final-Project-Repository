@@ -326,9 +326,6 @@ Both models were applied to a synthetically modified dataset reflecting projecte
 
 Results showed a modest but meaningful rise in disruption indicators. The cancellation rate edged up from 53.67% to 53.96%, while the mean delay increased from 78.3 minutes to 82.7 minutes, an average escalation of 4.5 minutes per flight. These shifts underline the operational vulnerabilities posed by a warming climate.
 
-## Conclusion
-
-This modeling framework captures both current and future weather impacts on air travel. By combining meteorological detail, temporal context, and robust machine learning pipelines, the models offer a pragmatic yet rigorous approach to forecasting delay and cancellation risks in an era of intensifying climate challenges.
 
 # Result Summary 
 
