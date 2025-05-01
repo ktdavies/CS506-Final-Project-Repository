@@ -106,12 +106,8 @@ From these findings, we can quantify the degree by which severity and precipitat
 # Hypothesis testing 
 To formalize our argument, we took the results from our multivariable linear regression and framed them within a hypothesis testing context. Starting with the null hypothesis that the predictor variables (weather severity and precipitation) had no effect on delay times we obtained a very small p-value, essentially close to zero. This provided a solid foundation for rejecting the null hypothesis at a significance level of 0.05. As a result, we were able to confidently conclude that weather severity does indeed impact flight delays in our dataset, laying the groundwork for the development of our prediction model.
 
-# Climate Data Supported Prediction Modeling 
-Our goal within this section of our project is to simulate how climate change will affect flight delays by adjusting our data set to reflect future climate predictions and building and running a prediction model on these new paramaters considering both total precipitation amounts and the frequency/intensity of heavy precipitation events.
 
-# The Climate Data 
-
-## Climate Change Analysis
+# Climate Change Analysis
 
 We start by loading the weather dataset and checking how many events and airports are included. Then, we take a quick look at missing values. To keep things clean, we decide to drop any rows that have missing values because of their low impact. This gets the dataset ready for analysis.
 
@@ -144,6 +140,12 @@ Each weather type is shown with a different color, and we include linear regress
 ![Yearly Trends](https://github.com/ktdavies/CS506-Final-Project-Repository/blob/main/Visualizations/yearly_trends.png)
 
 And then the last part measures how much weather duration and severity are changing over time within each cluster. It compares regression slopes to baseline values from the first year to calculate the yearly percent change, then displays these trends along with statistical metrics like R² and p-value. Finally, it filters and highlights only statistically significant trends (p < 0.05) to pinpoint meaningful changes in weather patterns across clusters.
+
+
+# Climate Data Supported Prediction Modeling 
+Our goal within this section of our project is to simulate how climate change will affect flight delays by adjusting our data set to reflect future climate predictions and building and running a prediction model on these new paramaters considering both total precipitation amounts and the frequency/intensity of heavy precipitation events.
+
+# The Climate Data 
 
 
 ## Purpose
