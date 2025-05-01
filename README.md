@@ -31,12 +31,12 @@ Destination Airport Merge: We repeated the process to append destination-weather
 
 After these merges, we dropped any redundant or duplicate columns (e.g., multiple date or airport code fields), ensuring the final dataset was tidy and efficient for modeling.
 
-#Visualizations Before the Midterm Report 
+# Visualizations Before the Midterm Report 
 
 Leading up to the midterm report, our primary focus was on exploring and familiarizing ourselves with the dataset through preliminary visualizations. This initial phase of data exploration helped us recognize patterns and trends providing valuable insights and raising important questions about the American Aviation industry. These early findings allowed us the groundwork for shifting our project toward a deeper investigation of how climate change may impact air travel in the future.  
 
 
-#delay by departure city delay by arrival city 
+# delay by departure city delay by arrival city 
 The plots below highlight the cities with the highest average arrival and departure delays. We chose to visualize delays by city rather than by individual airport due to our project's emphasis on weather patterns. Since weather impacts a broader geographic area then just an airport, we assumed a city a more appropriate unit for understanding flight delay influences. 
 
 
@@ -45,7 +45,7 @@ The plots below highlight the cities with the highest average arrival and depart
 [insert pic] 
 
 
-#departure and arrival delay by commercial carriers 
+# departure and arrival delay by commercial carriers 
 In this visualization, we explored the more lighthearted question: “Which airline should I choose if I want to arrive on time?” The graphs below shows the average departure and arrival delays for each airline, based on their carrier codes. Interestingly, the two graphs are nearly identical. This offered insight into not only airline performance but also served as a reassuring validation of our data processing. Since departure and arrival delays are typically correlated, this consistency suggested that our preprocessing and joins were functioning correctly.
 
 
@@ -53,7 +53,7 @@ In this visualization, we explored the more lighthearted question: “Which airl
 
 [insert pic] 
 
-#Establishing our argument within our data set  
+# Establishing our argument within our data set  
 # correlation 
 To support our hypothesis that weather severity impacts flight delays, we first analyzed our dataset to explore potential correlations between increasing weather severity and delays. With further evaluation of the data and the decision to incorporate  weather-related cancellations into our delays, we were able to calculate a moderately positive correlation coefficient of 0.3199. While this value may not appear highly significant on its own, it has meaningful implications given the dataset's large size and relatively short time span. The strength of this correlation, especially in the presence of various confounding factors, provides promising support for our hypothesis. This was a promising development within our project before even considering the potential future increase in weather severity. 
 
@@ -62,7 +62,7 @@ To support our hypothesis that weather severity impacts flight delays, we first 
 # Multivariable Linear Regression 
 To further establish our claims and strengthen our argument, we ran multivariable linear regression analysis on our data set with delays as the dependent variable and weather-related factors such as severity and precipitation as the independent variables. The results, presented in the table below, provide insight into how these weather conditions influence flight delays.
 
-### Multivariable Linear Regression Coefficients and Interpretation
+# Multivariable Linear Regression Coefficients and Interpretation
 
 | **Variable**                 | **Coefficient** | **Interpretation**                                                                 |
 |-----------------------------|----------------|-------------------------------------------------------------------------------------|
@@ -79,5 +79,5 @@ From these findings, we can quantify the degree by which severity and precipitat
 To formalize our argument, we took the results from our multivariable linear regression and framed them within a hypothesis testing context. Starting with the null hypothesis that the predictor variables (weather severity and precipitation) had no effect on delay times we obtained a very small p-value, essentially close to zero. This provided a solid foundation for rejecting the null hypothesis at a significance level of 0.05. As a result, we were able to confidently conclude that weather severity does indeed impact flight delays in our dataset, laying the groundwork for the development of our prediction model.
 
 
-#Result Summary 
+# Result Summary 
 ![image](https://github.com/user-attachments/assets/463e7a19-555a-4cd4-8186-f153ac9a523c)
