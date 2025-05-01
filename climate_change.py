@@ -455,7 +455,7 @@ def main():
 
     # 1) Load & preprocess
     df = pd.read_csv(
-        "weather.csv",
+        "weather_small.csv",
         parse_dates=["StartTime(UTC)", "EndTime(UTC)"],
         low_memory=False
     )
