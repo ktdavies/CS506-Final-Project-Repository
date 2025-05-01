@@ -27,9 +27,7 @@ For the weather data, we converted the StartTime(UTC) column to a datetime forma
 
 
 ## Flights Dataset:
-Flight data was loaded with careful attention to formatting and structure. The FL_DATE column was explicitly converted to datetime to align it better with the weather data set. The ORIGIN and DEST airport columns were uppercased and stripped of any trailing or leading whitespace to ensure clean joins.
-
-## We then executed a two-stage merge process:
+Flight data was loaded with careful attention to formatting and structure. The FL_DATE column was explicitly converted to datetime to align it better with the weather data set. The ORIGIN and DEST airport columns were uppercased and stripped of any trailing or leading whitespace to ensure clean joins. We then executed a two-stage merge process. 
 
 ## Origin Airport Merge: 
 The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
