@@ -183,12 +183,6 @@ To simulate future impacts of climate change on flight delays, we adjust histori
 
 # Result Summary 
 
-## CS506-Final-Project-Repository  
-## Group Members:  
-    Kaitlyn Davies, Michael Ahrens, Mehmet Sarioglu  
-
-## Building and Running our Code  
-
 ## Project Description  
 
 For our final project we took an interest in examining flight and weather data. With the support of data from Kaggle and _____[insert climate data]_____ we express how weather type, severity, and location affect delay frequency and duration and address how worsening weather could impact the American aviation industry, making air travel more difficult as the world adapts to the current climate crisis.  
