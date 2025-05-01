@@ -8,9 +8,9 @@ Welcome to the CS506 Final Project repository! We’re excited to share our work
 
 # Building and Running our Code  
 
-Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller datasets which are subsets of our larger dataset. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
+Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller subsets of our larger dataset. These sets we're designed to be as large as github could handel to try our best to preserve our projects results. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. Links to our larger Kaggle datasets can be found in our references section of our readme. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
 
-To explore further, simply download the runOurCode.py file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
+To explore further, simply download the **runOurCode.py** file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
 We hope you enjoy exploring our project!
 
 # Project Description 
@@ -276,18 +276,6 @@ To simulate future climate impacts more realistically, we adjusted the dataset u
 
 These changes were implemented by multiplying baseline precipitation data by a factor of 1.10 and by increasing both the likelihood and severity of simulated heavy precipitation events. While our current approach applies national-level adjustments for simplicity, future iterations of the model could incorporate regional differences to improve accuracy and represent localized climate dynamics more precisely.
 
-## References
-
-These adjustments were informed by several key sources, including Chapter 2 of the NCA4, the EPA’s Climate Indicators report on Heavy Precipitation, and relevant academic studies published in meteorological journals.
-
-NCA4 - Fourth National Climate Assessment, Chapter 2 (Climate)
-https://nca2018.globalchange.gov/chapter/2/
-
-EPA Climate Indicators - Heavy Precipitation
-https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation
-
-AMS Journal Article — Increasing Intensity and Frequency of Heavy Precipitation (2022)
-https://journals.ametsoc.org/view/journals/apme/61/11/JAMC-D-22-0008.1.xml
 
 # Prediction Model 
 
@@ -317,4 +305,24 @@ Results showed a modest but meaningful rise in disruption indicators. The cancel
 # Result Summary 
 
 Our findings suggest that climate change-driven increases in precipitation and severe weather will modestly, yet meaningfully, exacerbate air travel disruption. Simulated projections reveal a slight rise in cancellation rates (+0.28%) and a measurable increase in average delay per flight (+4.5 minutes). Although these changes may appear incremental, when scaled across thousands of daily flights, they translate into significant cumulative operational and economic consequences. These results underscore the growing strain that intensifying weather patterns are likely to place on aviation reliability and scheduling in the years ahead.
+
+## References
+
+These adjustments were informed by several key sources, including Chapter 2 of the NCA4, the EPA’s Climate Indicators report on Heavy Precipitation, and relevant academic studies published in meteorological journals.
+
+NCA4 - Fourth National Climate Assessment, Chapter 2 (Climate)
+https://nca2018.globalchange.gov/chapter/2/
+
+EPA Climate Indicators - Heavy Precipitation
+https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation
+
+AMS Journal Article — Increasing Intensity and Frequency of Heavy Precipitation (2022)
+https://journals.ametsoc.org/view/journals/apme/61/11/JAMC-D-22-0008.1.xml
+
+Kaggle US Weather Events Data Set 
+https://www.kaggle.com/datasets/sobhanmoosavi/us-weather-events
+
+Kaggle Flight Delay and Cancellation Dataset 
+https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset-2019-2023
+
 
