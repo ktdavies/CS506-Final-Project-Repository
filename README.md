@@ -14,12 +14,11 @@ We hope you enjoy exploring our project!
 
 # Project Description 
 
-For our final project we took an interest in examining flight and weather data. With the support of data from Kaggle  and _____[insert climate data]_____ we express how weather type, severity, and location affect delay frequency and duration and address how worsening weather could impact the American aviation industry making air travel more difficult as the world adapts to the current climate crisis. 
-
-For our final project, we explored  flight performance and weather conditions using data sourced from Kaggle and [insert climate data]. Our analysis focuses on how differing weather types, their severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.
+For our final project, we explored  flight performance and weather conditions using data sourced from Kaggle and Climate Change Data. Our analysis focuses on how differing weather types, their severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.
 
 # Preprocessing Data 
-A critical part of our initial efforts focused on constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align disparate data schemas, ensuring accurate and meaningful analysis across all dimensions.
+A critical part of our initial efforts was constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align data schemas, ensuring accurate and meaningful analysis across all dimensions.
+
 Airports Dataset:
 We began by importing the airports dataset directly from a CSV file, carefully removing any unnecessary header lines. From this dataset, we then extracted the ICAO and IATA codes—crucial identifiers for linking weather and flight data. To ensure consistency during merging, we standardized these codes by trimming whitespace and converting all entries to uppercase for consistency.
 
@@ -30,7 +29,7 @@ For the weather data, we converted the StartTime(UTC) column to a datetime forma
 ## Flights Dataset:
 Flight data was loaded with careful attention to formatting and structure. The FL_DATE column was explicitly converted to datetime to align it better with the weather data set. The ORIGIN and DEST airport columns were uppercased and stripped of any trailing or leading whitespace to ensure clean joins.
 
-We then executed a two-stage merge process:
+## We then executed a two-stage merge process:
 
 ## Origin Airport Merge: 
 The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
@@ -43,7 +42,7 @@ We repeated the process to append destination-weather features using the destina
 Leading up to the midterm report, our primary focus was on exploring and familiarizing ourselves with the dataset through preliminary visualizations. This initial phase of data exploration helped us recognize patterns and trends providing valuable insights and raising important questions about the American Aviation industry. These early findings allowed us the groundwork for shifting our project toward a deeper investigation of how climate change may impact air travel in the future.  
 
 
-# delay by departure city delay by arrival city 
+# Delay by Departure City Delay by Arrival City 
 The plots below highlight the cities with the highest average arrival and departure delays. We chose to visualize delays by city rather than by individual airport due to our project's emphasis on weather patterns. Since weather impacts a broader geographic area then just an airport, we assumed a city a more appropriate unit for understanding flight delay influences. 
 
 
@@ -53,15 +52,17 @@ The plots below highlight the cities with the highest average arrival and depart
 
 
 
-# departure and arrival delay by commercial carriers 
+# Departure and Arrival Delay by Airline
 In this visualization, we explored the more lighthearted question: “Which airline should I choose if I want to arrive on time?” The graphs below shows the average departure and arrival delays for each airline, based on their carrier codes. Interestingly, the two graphs are nearly identical. This offered insight into not only airline performance but also served as a reassuring validation of our data processing. Since departure and arrival delays are typically correlated, this consistency suggested that our preprocessing and joins were functioning correctly.
 
 
 ![Image](https://github.com/user-attachments/assets/c3e841db-f6a8-4491-9965-881dae94bc58) 
 ![Image](https://github.com/user-attachments/assets/5a5e2fd6-49f3-42ae-88c9-736bd08c8ca3)
 
-Additionally we compiled a DBSCAN with the same goal in mind and achieved these results. 
-The plot preserves the expected near-1-to-1 link between average departure and arrival delays, validating our data joins, yet small offsets remain: several carriers land marginally earlier or later than their take-off delay would suggest. These nuances appear consistently within the airline-level clusters identified by our models, indicating that en-route practices and schedule padding vary across groups as well as individual airlines.
+Additionally, we compiled a DBSCAN with the same goal in mind and achieved these results. 
+
+The plot preserves the expected near-1-to-1 link between average departure and arrival delays, validating our data joins. However, yet small offsets still remain. For example, several carriers land marginally earlier or later than their take-off delay would suggest. These nuances appear consistently within the airline-level clusters identified by our models, indicating that en-route practices and schedule padding vary across groups as well as individual airlines.
+
 ![Image](https://github.com/user-attachments/assets/86331c7d-1800-4932-a617-a533392fdcda)
 
 ### Here is a key to easily identify the airlines! 
@@ -89,14 +90,17 @@ The plot preserves the expected near-1-to-1 link between average departure and a
 
 
 
-# Establishing our argument within our data set  
-# correlation 
-To support our hypothesis that weather severity impacts flight delays, we first analyzed our dataset to explore potential correlations between increasing weather severity and delays. With further evaluation of the data and the decision to incorporate  weather-related cancellations into our delays, we were able to calculate a moderately positive correlation coefficient of 0.3199. While this value may not appear highly significant on its own, it has meaningful implications given the dataset's large size and relatively short time span. The strength of this correlation, especially in the presence of various confounding factors, provides promising support for our hypothesis. This was a promising development within our project before even considering the potential future increase in weather severity. 
+# Establishing our Argument Within our Data Set  
+
+# Correlation 
+
+To support our hypothesis that weather severity impacts flight delays, we first analyzed our dataset to explore potential correlations between increasing weather severity and delays. With further evaluation of the data and the decision to incorporate  weather-related cancellations into our delays, we were able to calculate a moderately positive correlation coefficient of 0.3199. While this value may not appear highly significant on its own, it has meaningful implications given the dataset's large size and relatively short time span. The strength of this correlation, especially in the presence of various confounding factors, provides promising support for our hypothesis. This was a promising development within our project before even considering the potential future increase in weather severity due to climate change. 
 
 ![Image](https://github.com/user-attachments/assets/beefe3c5-eeaa-4d59-8cd5-5e48605284ed)
 
 # Multivariable Linear Regression 
-To further establish our claims and strengthen our argument, we ran multivariable linear regression analysis on our data set with delays as the dependent variable and weather-related factors such as severity and precipitation as the independent variables. The results, presented in the table below, provide insight into how these weather conditions influence flight delays.
+
+To further establish our claims and strengthen our argument, we ran a multivariable linear regression analysis on our data set with delays as the dependent variable and weather-related factors such as severity and precipitation as the independent variables. The results, presented in the table below, provide insight into how these weather conditions influence flight delays.
 
 # Multivariable Linear Regression Coefficients and Interpretation
 
@@ -107,15 +111,16 @@ To further establish our claims and strengthen our argument, we ran multivariabl
 | `Precipitation_Origin`      | +8.92           | Each inch of precipitation at the origin adds **8.92 minutes** to the delay.         |
 | `Precipitation_Dest`        | +8.25           | Each inch of precipitation at the destination adds **8.25 minutes** to the delay.     |
 
-From these findings, we can quantify the degree by which severity and precipitation increase delay times. The results show a notable effect, with delays increasing by approximately 40 minutes across the severity scale, as weather patterns currently stand. This finding is particularly significant given the scale used for severity, and it suggests that an increase in weather severity could lead to even more substantial delays, raising concerns about the future resilience of the aviation industry. 
+From these findings, we can quantify the degree by which severity and precipitation increase delay duration. The results show a notable effect, with delays increasing by approximately 40 minutes across the severity scale, as weather patterns currently stand. This finding is particularly significant given the scale used for severity, as it suggests that an increase in weather severity could lead to even more substantial delays, raising concerns about the future resilience of the aviation industry. 
 
 
 
-# Hypothesis testing 
-To formalize our argument, we took the results from our multivariable linear regression and framed them within a hypothesis testing context. Starting with the null hypothesis that the predictor variables (weather severity and precipitation) had no effect on delay times we obtained a very small p-value, essentially close to zero. This provided a solid foundation for rejecting the null hypothesis at a significance level of 0.05. As a result, we were able to confidently conclude that weather severity does indeed impact flight delays in our dataset, laying the groundwork for the development of our prediction model.
+# Hypothesis Testing 
+
+To formalize our argument further, we took the results from our multivariable linear regression and framed them within a hypothesis testing context. Starting with the null hypothesis that the predictor variables (weather severity and precipitation) had no effect on delay times we obtained a very small p-value, aproximately zero. This provided a solid foundation for rejecting the null hypothesis at a significance level of 0.05. As a result, we were able to confidently conclude that weather severity does indeed impact flight delays in our dataset, laying the groundwork for the development of our prediction model.
 
 
-# Climate Change Analysis
+# Exploring our Weather Data 
 
 We start by loading the weather dataset and checking how many events and airports are included. Then, we take a quick look at missing values. To keep things clean, we decide to drop any rows that have missing values because of their low impact. This gets the dataset ready for analysis.
 
@@ -151,8 +156,9 @@ And then the last part measures how much weather duration and severity are chang
 
 
 # Climate Data Supported Prediction Modeling 
-Our goal within this section of our project is to simulate how climate change will affect flight delays by adjusting our data set to reflect future climate predictions and building and running a prediction model on these new paramaters considering both total precipitation amounts and the frequency/intensity of heavy precipitation events.
+Our goal within this portion of our project is to simulate how climate change will affect flight delays by adjusting our data set to reflect future climate predictions and building and running a prediction model on these new paramaters considering both total precipitation amounts and the frequency/intensity of heavy precipitation events.
 
+# How We Created our Prediction Model 
 
 ## Data Cleaning & Encoding Workflow
 
@@ -160,27 +166,27 @@ The raw flight–weather merge (`cleaned.csv`) arrives with more than two dozen 
 are irrelevant to delay‑due‑weather modelling.  We retain just the fields needed for our analysis
 (listed explicitly in the load statement) and parse all timestamp columns as true datetimes.
 
-### 1  Filter out the COVID anomaly
+### 1.  Filter out the COVID anomaly
 Traffic patterns during Mar‑2020 → Dec‑2021 diverge sharply from the long‑term trend.  
 All rows whose `flDate` falls inside that window are removed before any other processing, leaving
 a 2019 and 2022‑2023 core sample.
 
-### 2  Normalise the target delay column
+### 2.  Normalise the target delay column
 * Missing `delayDueWeather` values are set to 0.  
 * Flights cancelled specifically for weather (`cancelled == 1` **and** `cancellationCode == 'B'`)
   are re‑expressed as a synthetic delay of **400 minutes** so the downstream models can treat
   cancellations and long delays on a common numeric scale.
 
-### 3  Isolate weather‑affected flights
+### 3.  Isolate weather‑affected flights
 Rows with `delayDueWeather == 0` are dropped, yielding a compact `df_weather`
 DataFrame that contains only flights where weather was reported to matter.
 
-### 4  Remove unusable weather descriptors
+### 4.  Remove unusable weather descriptors
 Any residual string code `"UNK"` (or the sentinel –1 that replaced it earlier) in the
 origin or destination weather descriptors is eliminated.  
 Rows where *both* origin and destination weather blocks are completely missing are also discarded.
 
-### 5  Block‑level missing‑value imputation
+### 5.  Block‑level missing‑value imputation
 For flights where **one side** (origin *or* destination) has no weather measurements at all,
 we fill that block with neutral placeholders:
 
@@ -191,7 +197,7 @@ weatherType = -1   severity = -1   precipitation = 0
 
 This preserves row count while signalling “no weather event recorded” to the models.
 
-### 6  Numerical re‑encoding
+### 6.  Numerical re‑encoding
 * **Precipitation**: NaNs → 0 mm.  
 * **Event times**: each datetime is mapped to *minutes from midnight* (float) with –1 for missing.  
 * **Severity**: `"Light"→0.0`, `"Moderate"→1.0`, `"Heavy"→2.0`, –1.0 for missing.  
@@ -199,16 +205,13 @@ This preserves row count while signalling “no weather event recorded” to the
   `float32`; the missing sentinel is –1.0.
 
 
-
 ## Predictive Modeling with Calendar‑Aware Features
 
-The notebook finishes the data‑engineering pipeline by training two production‑ready
-models – one to estimate **weather‑driven departure delay minutes** and another to
-flag **full cancellations** – while explicitly incorporating calendar context
-(year / month / day) alongside the meteorological signals that were engineered
+The notebook finishes the data‑engineering pipeline by training two models one to estimate **weather‑driven departure delay minutes** and another to
+flag **full cancellations** – while explicitly incorporating calendar context (year / month / day) alongside the meteorological signals that were engineered
 earlier in the workflow.
 
-### 1 Delay‑Severity Regressor (XGBoost, GPU)
+### 1. Delay‑Severity Regressor (XGBoost, GPU)
 
 * **Sample** All flights that experienced *some* weather impact
   (`delayDueWeather > 0`) *but were not cancelled*.  
@@ -227,7 +230,7 @@ earlier in the workflow.
   split, and the fitted object is persisted as
   `cuda_xgb_severity_model.joblib`.
 
-### 2 Cancellation Classifier (Logistic, Balanced)
+### 2. Cancellation Classifier (Logistic, Balanced)
 
 * **Target** Binary flag where a weather cancellation (“B” code) is encoded as
   `is_canceled = 1`.  
@@ -249,7 +252,7 @@ disk, ready to be plugged into the forward‑simulation notebooks that explore
 ten‑year climate scenarios.
 
 
-### 3 Model Performance Snapshot _(validation split)_
+### 3. Model Performance Snapshot _(validation split)_
 
 | Model | Metric | Value |
 |-------|--------|-------|
@@ -263,10 +266,10 @@ ten‑year climate scenarios.
 These scores provide a quantitative baseline for future scenario testing.
 
 # The Climate Data 
-### Climate‑change scenario forecasting
 
-To estimate how shifting weather patterns could shape operational performance, we took the hold‑out portion of our weather‑enhanced flight dataset and **synthetically advanced it ten years into the future**.  
-Cluster‑level trend multipliers – extracted from our historical NOAA analysis – were applied to each record’s precipitation, severity and event‑window length, and the calendar year was rolled forward by +10 while preserving month and day.  Fresh composite features were then recalculated so the modified inputs remain physically consistent.
+### Climate Change Cancelation and Delay Forecasting
+
+To estimate how shifting weather patterns could shape operational performance, we took the hold‑out portion of our weather‑enhanced flight dataset and **synthetically advanced it ten years into the future**. Cluster‑level trend multipliers – extracted from our historical NOAA analysis – were applied to each record’s precipitation, severity and event‑window length, and the calendar year was rolled forward by +10 while preserving month and day.  Fresh composite features were then recalculated so the modified inputs remain physically consistent.
 
 Running the trained models on this future dataset yields:
 
@@ -274,40 +277,6 @@ Running the trained models on this future dataset yields:
 * **Mean delay:** 78.3 min → **82.7 min** ( +4.5 min)
 
 These figures provide an early quantitative view of the operational risk posed by continuing weather intensification.
-
-## Purpose
-To simulate future impacts of climate change on flight delays, we adjust historical precipitation data both in overall amount and in frequency/intensity of heavy precipitation events.
-
-## Adjustments
-
-### 1. Future Scenario Adjustment
-- **Adjustment**: +10% to historical precipitation values
-- **Source**: [NCA4 - Fourth National Climate Assessment, Chapter 2](https://nca2018.globalchange.gov/chapter/2/)
-- **Reason**: Under high emissions scenarios (RCP8.5), models project up to a 10% increase in precipitation across much of the United States by late 21st century, particularly in winter and spring.
-
-### 2. Heavy Precipitation Events Adjustment
-- **Adjustment**:
-  - Increase **frequency** of heavy precipitation days (2% increase per decade)
-  - Increase **intensity** (amount of rain per extreme event)
-- **Source**:
-  - [NCA4 - Fourth National Climate Assessment, Chapter 2](https://nca2018.globalchange.gov/chapter/2/)
-  - [EPA Climate Indicators - Heavy Precipitation](https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation)
-  - https://journals.ametsoc.org/view/journals/apme/61/11/JAMC-D-22-0008.1.xml?utm_source=chatgpt.com
-- **Reason**: The intensity and frequency of extreme precipitation events have increased significantly since the mid-20th century, and this trend is expected to continue under future warming scenarios.
-
-## Implementation Summary
-- Apply a **1.10 multiplication factor** to baseline precipitation data for future projections.
-- Increase the modeled **probability and severity of heavy precipitation events** in simulations.
-
-## Additional Notes
-- While a national-level adjustment is used for simplicity, future work could apply **regional adjustment factors** for greater accuracy.
-
----
-
-### References
-- [NCA4 - Fourth National Climate Assessment, Chapter 2](https://nca2018.globalchange.gov/chapter/2/)
-- [EPA Climate Indicators - Heavy Precipitation](https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation)
-
 
 # Prediction Model 
 
