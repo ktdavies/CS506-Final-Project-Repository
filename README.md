@@ -16,7 +16,7 @@ A critical part of our initial efforts focused on constructing a clean dataset b
 Airports Dataset:
 We began by importing the airports dataset directly from a CSV file, carefully removing any unnecessary header lines. From this dataset, we then extracted the ICAO and IATA codes—crucial identifiers for linking weather and flight data. To ensure consistency during merging, we standardized these codes by trimming whitespace and converting all entries to uppercase for consistency.
 
-### Weather Dataset:
+## Weather Dataset:
 For the weather data, we converted the StartTime(UTC) column to a datetime format and extracted the date to align with the flight schedule data. The airport codes in this dataset were ICAO format, so we standardized them in the same way and then merged the weather dataset with the cleaned airports dataset to map each ICAO code to its corresponding IATA code. This step was essential, as FAA flight records use IATA codes exclusively.
 
 
