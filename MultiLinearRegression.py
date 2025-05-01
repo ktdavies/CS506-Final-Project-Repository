@@ -28,15 +28,17 @@ def main():
     df['Severity_Origin_numerical'] = df['Severity_Origin'].map(severity_map)
     df['Severity_Dest_numerical'] = df['Severity_Dest'].map(severity_map)
 
-    df['Severity_Origin_numerical'].fillna(df['Severity_Origin_numerical'].mode()[0], inplace=True)
-    df['ARR_DELAY'].fillna(df['ARR_DELAY'].mean(), inplace=True)
-    df['DEP_DELAY'].fillna(df['DEP_DELAY'].mean(), inplace=True)
+    # Avoid FutureWarning by not using inplace=True
+    df['Severity_Origin_numerical'] = df['Severity_Origin_numerical'].fillna(df['Severity_Origin_numerical'].mode()[0])
+    df['ARR_DELAY'] = df['ARR_DELAY'].fillna(df['ARR_DELAY'].mean())
+    df['DEP_DELAY'] = df['DEP_DELAY'].fillna(df['DEP_DELAY'].mean())
 
     # Treat weather-related cancellations as extreme delays
-    df.loc[df['CANCELLATION_CODE'] == 'B', 'ARR_DELAY'] = 400
-    df.loc[df['CANCELLATION_CODE'] == 'B', 'DEP_DELAY'] = 400
-
-    # Convert date
+    if 'CANCELLATION_CODE' in df.columns:
+        df.loc[df['CANCELLATION_CODE'] == 'B', 'ARR_DELAY'] = 400
+        df.loc[df['CANCELLATION_CODE'] == 'B', 'DEP_DELAY'] = 400
+    
+    # Convert FL_DATE to datetime
     df['FL_DATE'] = pd.to_datetime(df['FL_DATE'])
 
     # Step 2: Run multivariable linear regression
@@ -53,21 +55,14 @@ def main():
 
     merged = pd.merge(daily_severity, daily_delay, on='FL_DATE')
 
-    plt.figure(figsize=(12, 6))
-    sns.lineplot(x='FL_DATE', y='Severity_Origin_numerical', data=merged, label='Weather Severity')
-    sns.lineplot(x='FL_DATE', y='ARR_DELAY', data=merged, label='Arrival Delay')
-    plt.title('Daily Weather Severity and Arrival Delay Over Time')
-    plt.ylabel('Severity / Delay')
-    plt.xlabel('Date')
-    plt.legend()
-    plt.show()
-
     # Step 4: Correlation matrix
     corr = df[['ARR_DELAY', 'Severity_Origin_numerical', 'Severity_Dest_numerical',
                'Precipitation_Origin', 'Precipitation_Dest']].corr()
 
-    sns.heatmap(corr, annot=True, cmap='coolwarm')
-    plt.title('Correlation Matrix: Weather & Arrival Delay')
+    # Plot the correlation matrix (optional)
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f')
+    plt.title('Correlation Matrix')
     plt.show()
 
 if __name__ == "__main__":
