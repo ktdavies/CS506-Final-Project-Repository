@@ -19,7 +19,7 @@ For our final project, we explored  flight performance and weather conditions us
 # Preprocessing Data 
 A critical part of our initial efforts was constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align data schemas, ensuring accurate and meaningful analysis across all dimensions.
 
-Airports Dataset:
+## Airports Dataset:
 We began by importing the airports dataset directly from a CSV file, carefully removing any unnecessary header lines. From this dataset, we then extracted the ICAO and IATA codes—crucial identifiers for linking weather and flight data. To ensure consistency during merging, we standardized these codes by trimming whitespace and converting all entries to uppercase for consistency.
 
 ## Weather Dataset:
