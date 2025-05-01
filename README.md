@@ -1,5 +1,5 @@
 # CS506-Final-Project-Repository
-Link to presentation: https://youtu.be/j6PCg8PF1Rg
+Link to YouTube presentation: https://youtu.be/j6PCg8PF1Rg
 # Group Members: 
    Kaitlyn Davies, Michael Ahrens, Mehmet Sarioglu
 
@@ -8,7 +8,7 @@ Welcome to the CS506 Final Project repository! We’re excited to share our work
 
 # Building and Running our Code  
 
-Due to the large size of our original dataset, we were unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller datasets representative of our larger dataset. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project.
+Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller datasets which are subsets of our larger dataset. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
 
 To explore further, simply download the runOurCode.py file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
 We hope you enjoy exploring our project!
