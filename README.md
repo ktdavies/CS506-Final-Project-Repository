@@ -42,7 +42,7 @@ The plots below highlight the cities with the highest average arrival and depart
 
 ![Image](https://github.com/user-attachments/assets/4b040e8e-9667-4c27-b0e4-31c687498c7d)
 
-![Image](https://github.com/user-attachments/assets/3bf6c8da-fc76-453d-b03c-63b9729df69b)
+![Image](https://github.com/user-attachments/assets/c3e841db-f6a8-4491-9965-881dae94bc58)
 
 
 # departure and arrival delay by commercial carriers 
