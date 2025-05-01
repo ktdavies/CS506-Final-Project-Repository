@@ -2,10 +2,10 @@
 # Group Members: 
    Kaitlyn Davies, Michael Ahrens, Mehmet Sarioglu
 
-# Welcome 
+# Welcome!
 Welcome to the CS506 Final Project repository! We’re excited to share our work with you. Before you dive in we’d like to provide some important details about our GitHub repository.
 
-#  Building and Running our Code  
+# Building and Running our Code  
 
 Due to the large size of our original dataset, we were unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller datasets representative of our larger dataset. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project.
 
