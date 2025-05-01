@@ -22,23 +22,32 @@ import DBSCANbyAirline
 import DelayByCity_Visualization
 import MultiLinearRegression
 import model_final
+import climate_change
 
 def main():
     print("Clustering delays by airline using DBSCAN...")
     DBSCANbyAirline.main()
-    print("finished with Clustering delays by airline using DBSCAN ...")
+    print("Clustering delays by airline using DBSCAN is done.")
 
     print("Visualizing delays by city...")
     DelayByCity_Visualization.main()
+    print("Visualizing delays by city is done.")
     
     print("Performing correlation and hypothesis testing...")
     CorrAndHTest.main()
+    print("Performing correlation and hypothesis testing is done. ")
 
     print("Running multi-linear regression on delay data...")
     MultiLinearRegression.main()
+    print("Running multi-linear regression on delay data is done.")
+    
+    print("Running the Climate Change file...")
+    climate_change.main()
+    print("Running the Climate Change file is done.")
 
-    print("Running Prediction Model..")
+    print("Running Prediction Model...")
     model_final.main()
+    print("Running Prediction Model is done.")
 
     print("All tasks completed successfully.")
 
