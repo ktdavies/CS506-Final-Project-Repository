@@ -42,14 +42,14 @@ The plots below highlight the cities with the highest average arrival and depart
 
 ![Image](https://github.com/user-attachments/assets/4b040e8e-9667-4c27-b0e4-31c687498c7d)
 
-![Image](https://github.com/user-attachments/assets/c3e841db-f6a8-4491-9965-881dae94bc58)
+
 
 
 # departure and arrival delay by commercial carriers 
 In this visualization, we explored the more lighthearted question: “Which airline should I choose if I want to arrive on time?” The graphs below shows the average departure and arrival delays for each airline, based on their carrier codes. Interestingly, the two graphs are nearly identical. This offered insight into not only airline performance but also served as a reassuring validation of our data processing. Since departure and arrival delays are typically correlated, this consistency suggested that our preprocessing and joins were functioning correctly.
 
 
-[inset pic] 
+![Image](https://github.com/user-attachments/assets/c3e841db-f6a8-4491-9965-881dae94bc58) 
 
 [insert pic] 
 
