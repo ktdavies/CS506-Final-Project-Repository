@@ -8,8 +8,6 @@ Welcome to the CS506 Final Project repository! We’re excited to share our work
 
 # Building and Running our Code  
 
-run our code using  **runOurCode.py** ! 
-
 Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller subsets of our larger dataset. These sets we're designed to be as large as github could handel to try our best to preserve our projects results. Professor Galletti and Ta's have confirmed this solution as valid. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. Links to our larger Kaggle datasets can be found in our references section of our readme. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
 
 To explore further, simply download the **runOurCode.py** file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
