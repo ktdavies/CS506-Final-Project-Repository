@@ -110,6 +110,41 @@ Our goal within this section of our project is to simulate how climate change wi
 
 # The Climate Data 
 
+## Climate Change Analysis
+
+We start by loading the weather dataset and checking how many events and airports are included. Then, we take a quick look at missing values. To keep things clean, we decide to drop any rows that have missing values because of their low impact. This gets the dataset ready for analysis.
+
+We begin by calculating how long each weather event lasted, in hours. To keep things reasonable, we filter out events that lasted less than an hour or more than 30 days.
+
+Then we summarize how many events happened at each airport, grouped by event type. We also compute a second duration column to get yearly percentages for how long different types of events occurred, broken down by location and severity.
+
+Before clustering, we clean the data by removing non-numeric columns and focusing on relevant event types.
+
+To understand which weather types last longest and are most severe, we group the data again by event type and severity level, calculate average durations, and plot a grouped bar chart. This gives us a clear picture of which weather types cause the most prolonged disruptions across the country.
+
+Then we use the Elbow Method to find the optimal number of clusters by plotting how the KMeans distortion (inertia) changes as we increase the number of clusters from 1 to 19. After that, we look for the "elbow" in the curve to decide the best value for k is 4.
+
+![Elbow-Method Plot](https://github.com/ktdavies/CS506-Final-Project-Repository/blob/main/Visualizations/newplot.png)
+
+This part uses the Elbow Method to find the optimal number of clusters by plotting how the KMeans distortion (inertia) changes as we increase the number of clusters from 1 to 19. After that, we look for the "elbow" in the curve to decide the best value for k.
+
+We apply KMeans clustering with 4 clusters on the cleaned weather data, then assign each airport to a cluster. After that, we merge these cluster labels back with the full weather and location data.
+
+Next, we create an interactive U.S. map showing the spatial distribution of airports by cluster. Each airport is color-coded based on its assigned cluster.
+
+Then we analyzed the behavior of the clusters by looking at how different weather types are distributed within each one. We calculated the proportion of time each event type occurred and visualized the typical weather profile for each cluster using bar charts.
+
+![Cluster Behaviour](https://github.com/ktdavies/CS506-Final-Project-Repository/blob/main/Visualizations/clusters_behaviour.png)
+
+For every cluster, we plot yearly trends for both total duration and average severity.
+
+Each weather type is shown with a different color, and we include linear regression lines regression to highlight any upward or downward trends over the years. The goal is to see how weather patterns have evolved within each cluster, whether certain event types are becoming more frequent or severe over time.
+
+![Yearly Trends](https://github.com/ktdavies/CS506-Final-Project-Repository/blob/main/Visualizations/yearly_trends.png)
+
+And then the last part measures how much weather duration and severity are changing over time within each cluster. It compares regression slopes to baseline values from the first year to calculate the yearly percent change, then displays these trends along with statistical metrics like R² and p-value. Finally, it filters and highlights only statistically significant trends (p < 0.05) to pinpoint meaningful changes in weather patterns across clusters.
+
+
 ## Purpose
 To simulate future impacts of climate change on flight delays, we adjust historical precipitation data both in overall amount and in frequency/intensity of heavy precipitation events.
 
@@ -148,4 +183,27 @@ To simulate future impacts of climate change on flight delays, we adjust histori
 
 # Result Summary 
 
-![image](https://github.com/user-attachments/assets/463e7a19-555a-4cd4-8186-f153ac9a523c)
+# CS506-Final-Project-Repository  
+# Group Members:  
+    Kaitlyn Davies, Michael Ahrens, Mehmet Sarioglu  
+
+# Building and Running our Code  
+
+# Project Description  
+
+For our final project we took an interest in examining flight and weather data. With the support of data from Kaggle and _____[insert climate data]_____ we express how weather type, severity, and location affect delay frequency and duration and address how worsening weather could impact the American aviation industry, making air travel more difficult as the world adapts to the current climate crisis.  
+
+For our final project, we explored flight performance and weather conditions using data sourced from Kaggle and **[insert climate data]**. Our analysis focuses on how differing weather types, their severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.  
+
+# Preprocessing Data  
+
+A critical part of our initial efforts focused on constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align disparate data schemas, ensuring accurate and meaningful analysis across all dimensions.  
+
+**Airports Dataset:**  
+We began by importing the airports dataset directly from a CSV file, carefully removing any unnecessary header lines. From this dataset, we then extracted the ICAO and IATA codes—crucial identifiers for linking weather and flight data. To ensure consistency during merging, we standardized these codes by trimming whitespace and converting all entries to uppercase for consistency.  
+
+**Weather Dataset:**  
+For the weather data, we converted the **StartTime (UTC)** column to a datetime format and extracted the date to align with the flight schedule data. The airport codes in this dataset were in ICAO format, so we standardized them in the same way and then merged the weather dataset with the cleaned airports dataset to map each ICAO code to its corresponding IATA code. This step was essential, as FAA flight records use IATA codes exclusively. 
+
+**Flights Dataset**
+For the flight data, we loaded the Kaggle Flight Delay and Cancellation Dataset (2019-2023), converted the FL_DATE field to a proper datetime, and trimmed away non-essential columns (e.g., taxi times, wheel-on/off, redundant DOT codes) to keep only schedule, delay-cause, and distance features. Origin and destination IATA codes were upper-cased and merged with the airport lookup, after which we joined daily weather summaries for both airports by matching [IATA, Date]. Key delay-reason and precipitation fields were zero-filled, categorical columns (e.g., cancellation code, weather type/severity) were set to “None” when missing, and timing metrics lacking data were flagged with -1. Finally, we engineered a binary DELAYED label (1 if ARR_DELAY ≥ 15 min) and saved the tidy result as final_flights_weather_merged.csv for downstream modeling.
