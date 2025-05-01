@@ -20,12 +20,12 @@ We began by importing the airports dataset directly from a CSV file, carefully r
 For the weather data, we converted the StartTime(UTC) column to a datetime format and extracted the date to align with the flight schedule data. The airport codes in this dataset were ICAO format, so we standardized them in the same way and then merged the weather dataset with the cleaned airports dataset to map each ICAO code to its corresponding IATA code. This step was essential, as FAA flight records use IATA codes exclusively.
 
 
-### Flights Dataset:
+## Flights Dataset:
 Flight data was loaded with careful attention to formatting and structure. The FL_DATE column was explicitly converted to datetime to align it better with the weather data set. The ORIGIN and DEST airport columns were uppercased and stripped of any trailing or leading whitespace to ensure clean joins.
 
 We then executed a two-stage merge process:
 
-### Origin Airport Merge: The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
+## Origin Airport Merge: The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
 
 ### Destination Airport Merge: We repeated the process to append destination-weather features using the destination airport IATA code and the same date field.
 
