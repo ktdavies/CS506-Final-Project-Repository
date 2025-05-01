@@ -144,7 +144,7 @@ To simulate future impacts of climate change on flight delays, we adjust histori
 - [EPA Climate Indicators - Heavy Precipitation](https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation)
 
 
-#Prediction Model 
+# Prediction Model 
 
 # Result Summary 
 
