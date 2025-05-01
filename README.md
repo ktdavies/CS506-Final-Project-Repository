@@ -184,21 +184,3 @@ To simulate future impacts of climate change on flight delays, we adjust histori
 
 # Result Summary 
 
-## Project Description  
-
-For our final project we took an interest in examining flight and weather data. With the support of data from Kaggle and _____[insert climate data]_____ we express how weather type, severity, and location affect delay frequency and duration and address how worsening weather could impact the American aviation industry, making air travel more difficult as the world adapts to the current climate crisis.  
-
-For our final project, we explored flight performance and weather conditions using data sourced from Kaggle and **[insert climate data]**. Our analysis focuses on how differing weather types, their severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.  
-
-## Preprocessing Data  
-
-A critical part of our initial efforts focused on constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align disparate data schemas, ensuring accurate and meaningful analysis across all dimensions.  
-
-**Airports Dataset:**  
-We began by importing the airports dataset directly from a CSV file, carefully removing any unnecessary header lines. From this dataset, we then extracted the ICAO and IATA codes—crucial identifiers for linking weather and flight data. To ensure consistency during merging, we standardized these codes by trimming whitespace and converting all entries to uppercase for consistency.  
-
-**Weather Dataset:**  
-For the weather data, we converted the **StartTime (UTC)** column to a datetime format and extracted the date to align with the flight schedule data. The airport codes in this dataset were in ICAO format, so we standardized them in the same way and then merged the weather dataset with the cleaned airports dataset to map each ICAO code to its corresponding IATA code. This step was essential, as FAA flight records use IATA codes exclusively. 
-
-**Flights Dataset**
-For the flight data, we loaded the Kaggle Flight Delay and Cancellation Dataset (2019-2023), converted the FL_DATE field to a proper datetime, and trimmed away non-essential columns (e.g., taxi times, wheel-on/off, redundant DOT codes) to keep only schedule, delay-cause, and distance features. Origin and destination IATA codes were upper-cased and merged with the airport lookup, after which we joined daily weather summaries for both airports by matching [IATA, Date]. Key delay-reason and precipitation fields were zero-filled, categorical columns (e.g., cancellation code, weather type/severity) were set to “None” when missing, and timing metrics lacking data were flagged with -1. Finally, we engineered a binary DELAYED label (1 if ARR_DELAY ≥ 15 min) and saved the tidy result as final_flights_weather_merged.csv for downstream modeling.
