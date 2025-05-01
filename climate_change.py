@@ -26,7 +26,7 @@ sns.set_style("whitegrid")
 # In[2]:
 
 
-DATA_PATH = "weather.csv"
+DATA_PATH = "weather_small.csv"
 
 df = pd.read_csv(DATA_PATH, parse_dates=["StartTime(UTC)", "EndTime(UTC)"])
 print(f"Events: {len(df):,}  |  Airports: {df['AirportCode'].nunique()}")
@@ -347,7 +347,7 @@ fig = px.scatter_geo(
 fig.update_traces(marker=dict(size=6))
 fig.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
 # Save the plot as an interactive HTML file
-fig.write_html("airport_cluster_map.html")
+fig.write_html("airport_cluster_map_small.html")
 # Show the interactive figure
 fig.show()
 
@@ -372,7 +372,7 @@ iata_clusters = (
 )
 
 # Save to CSV
-output_path = "airport_cluster_assignments_iata.csv"
+output_path = "airport_cluster_assignments_iata_small.csv"
 iata_clusters.to_csv(output_path, index=False)
 
 print(f"IATA-formatted cluster CSV saved to: {output_path}")
