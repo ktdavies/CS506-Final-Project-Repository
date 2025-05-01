@@ -40,7 +40,7 @@ Leading up to the midterm report, our primary focus was on exploring and familia
 The plots below highlight the cities with the highest average arrival and departure delays. We chose to visualize delays by city rather than by individual airport due to our project's emphasis on weather patterns. Since weather impacts a broader geographic area then just an airport, we assumed a city a more appropriate unit for understanding flight delay influences. 
 
 
-[insert pic] 
+![Image](https://github.com/user-attachments/assets/4b040e8e-9667-4c27-b0e4-31c687498c7d)
 
 [insert pic] 
 
