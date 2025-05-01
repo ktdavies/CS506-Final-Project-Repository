@@ -1,39 +1,83 @@
 # CS506-Final-Project-Repository
 # Group Members: 
    Kaitlyn Davies, Michael Ahrens, Mehmet Sarioglu
+
+#  Building and Running our Code  
+
+
 # Project Description 
 
-   For our final project we are interested in examining flight data. With the support of data from the FAA and NOAA we will discuss how weather affects flight delays. We aim to approach this question from the perspective of climate change and how emissions may affect local weather inturn affecting delays and making air travel more difficult as the world adapts to the current climate crisis. We hope to project how delays may worsen with climate change progression and offer solutions on how the aerospace industry may adapt to maintain high travel demand. 
+For our final project we took an interest in examining flight and weather data. With the support of data from Kaggle  and _____[insert climate data]_____ we express how weather type, severity, and location affect delay frequency and duration and address how worsening weather could impact the American aviation industry making air travel more difficult as the world adapts to the current climate crisis. 
 
- We anticipate collecting data from the FAA, Kaggle, NOAA and the EPA and to model characteristics found within the data set’s such as weather patterns, airlines, ticket prices, emission type, rate of emissions and region to predict the likelihood of flight delays and the duration and type of the delays. We will test data from a time period where emissions were lower then they are now and from more recently to draw comparisons and predict progression. Our results will be presented graphically and modeled with an interactive map. 
+For our final project, we explored  flight performance and weather conditions using data sourced from Kaggle and [insert climate data]. Our analysis focuses on how differing weather types, their severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.
 
- To visualize the data we will use a mix of different methods to make everything clear and interactive. Throughout the project, we’ll use histograms and frequency polygons to track and display data training progress. For the final product we will make a real-time, interactive map to view flights, with weather and environmental overlays to show how conditions might impact travel. Flight paths across the country will be mapped out to highlight movement patterns. On the side, a panel will display flight numbers along with a score or percentage, giving insights into the likelihood of cancellations or delays.
+# Preprocessing Data 
+A critical part of our initial efforts focused on constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align disparate data schemas, ensuring accurate and meaningful analysis across all dimensions.
+Airports Dataset:
+We began by importing the airports dataset directly from a CSV file, carefully removing any unnecessary header lines. From this dataset, we then extracted the ICAO and IATA codes—crucial identifiers for linking weather and flight data. To ensure consistency during merging, we standardized these codes by trimming whitespace and converting all entries to uppercase for consistency.
 
-# Goals
-A clear description of our goals within this project is as follows: 
-   - Successfully predict flight delays based upon weather
-   - Model how flight emissions may impact weather
-   - Examine how past emission increases have affected weather patterns 
-   - Draw conclusions on how increased emissions may continue to affect air travel 
+Weather Dataset:
+For the weather data, we converted the StartTime(UTC) column to a datetime format and extracted the date to align with the flight schedule data. The airport codes in this dataset were ICAO format, so we standardized them in the same way and then merged the weather dataset with the cleaned airports dataset to map each ICAO code to its corresponding IATA code. This step was essential, as FAA flight records use IATA codes exclusively.
 
 
-# Data Needs and Collection Methods
+Flights Dataset:
+Flight data was loaded with careful attention to formatting and structure. The FL_DATE column was explicitly converted to datetime to align it better with the weather data set. The ORIGIN and DEST airport columns were uppercased and stripped of any trailing or leading whitespace to ensure clean joins.
 
-   We plan to first collect data on flight delays from accredited resources such as the FAA. We anticipate that we will have to cross reference our flight data from the FAA with more specific weather data from NOAA. In addition to these resources, we will support our claim of increased flight delays with progression of climate change with data from the EPA. 
+We then executed a two-stage merge process:
 
-# Data Modeling 
-   To address our claim that climate change will lead to an increased number of flight delays we will utilize factors of delay such as weather, region, and traffic. These variables will serve as  input and will produce a predictor variable of delay as output. Additionally, we plan to examine delay duration as well as effects of increased emissions on weather with regression and machine learning models. 
+Origin Airport Merge: The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
 
-# Data Visualization 
-To visualize the data we will use a mix of different methods to make everything clear and interactive. Throughout the project, we’ll use histograms and frequency polygons to track and display data training progress. For the final product we will make a real-time, interactive map to view flights, with weather and environmental overlays to show how conditions might impact travel. Flight paths across the country will be mapped out to highlight movement patterns. On the side, a panel will display flight numbers along with a score or percentage, giving insights into the likelihood of cancellations or delays.
+Destination Airport Merge: We repeated the process to append destination-weather features using the destination airport IATA code and the same date field.
 
-# Test Plan 
-   With a focus on our conclusion of predicting how progressive climate change may impact flight delays and air travel, we plan to train data from a time period with lower emission rates and the amount of delays seen during that period and compare it with more recent data.
+After these merges, we dropped any redundant or duplicate columns (e.g., multiple date or airport code fields), ensuring the final dataset was tidy and efficient for modeling.
 
-# Addressing Non-Weather Factors
+#Visualizations Before the Midterm Report 
 
-   To address the wide range of factors that contribute to flight delays beyond weather and climate, we will use datasets (e.g., from the FAA) that categorize delay causes. By focusing specifically on weather-related delays and normalizing for other variables like air traffic volume and operational disruptions, we can isolate the true impact of weather on flight schedules. Additionally, we will compare historical and current weather patterns to differentiate natural variability from climate change influences. By correlating these trends with emissions data, we aim to determine how climate change-driven weather patterns contribute to flight delays while accounting for non-weather factors.
+Leading up to the midterm report, our primary focus was on exploring and familiarizing ourselves with the dataset through preliminary visualizations. This initial phase of data exploration helped us recognize patterns and trends providing valuable insights and raising important questions about the American Aviation industry. These early findings allowed us the groundwork for shifting our project toward a deeper investigation of how climate change may impact air travel in the future.  
 
-# Differentiating Natural vs. Climate-Change-Driven Weather
 
-   To differentiate between natural weather conditions and those influenced by climate change, we will compare historical weather patterns with recent conditions and examine how extreme weather events have become more frequent or intense over time. By correlating these trends with emissions data from the EPA and other sources, we aim to establish a connection between increasing emissions, changing weather patterns, and resulting flight delays.
+#delay by departure city delay by arrival city 
+The plots below highlight the cities with the highest average arrival and departure delays. We chose to visualize delays by city rather than by individual airport due to our project's emphasis on weather patterns. Since weather impacts a broader geographic area then just an airport, we assumed a city a more appropriate unit for understanding flight delay influences. 
+
+
+[insert pic] 
+
+[insert pic] 
+
+
+#departure and arrival delay by commercial carriers 
+In this visualization, we explored the more lighthearted question: “Which airline should I choose if I want to arrive on time?” The graphs below shows the average departure and arrival delays for each airline, based on their carrier codes. Interestingly, the two graphs are nearly identical. This offered insight into not only airline performance but also served as a reassuring validation of our data processing. Since departure and arrival delays are typically correlated, this consistency suggested that our preprocessing and joins were functioning correctly.
+
+
+[inset pic] 
+
+[insert pic] 
+
+#Establishing our argument within our data set  
+# correlation 
+To support our hypothesis that weather severity impacts flight delays, we first analyzed our dataset to explore potential correlations between increasing weather severity and delays. With further evaluation of the data and the decision to incorporate  weather-related cancellations into our delays, we were able to calculate a moderately positive correlation coefficient of 0.3199. While this value may not appear highly significant on its own, it has meaningful implications given the dataset's large size and relatively short time span. The strength of this correlation, especially in the presence of various confounding factors, provides promising support for our hypothesis. This was a promising development within our project before even considering the potential future increase in weather severity. 
+
+[insert correlation pic weathe sev. Vs avg del] 
+
+# Multivariable Linear Regression 
+To further establish our claims and strengthen our argument, we ran multivariable linear regression analysis on our data set with delays as the dependent variable and weather-related factors such as severity and precipitation as the independent variables. The results, presented in the table below, provide insight into how these weather conditions influence flight delays.
+
+### Multivariable Linear Regression Coefficients and Interpretation
+
+| **Variable**                 | **Coefficient** | **Interpretation**                                                                 |
+|-----------------------------|----------------|-------------------------------------------------------------------------------------|
+| `Severity_Origin_numerical` | +19.97          | Each increase in origin weather severity adds **19.97 minutes** to the arrival delay. |
+| `Severity_Dest_numerical`   | +17.81          | Each increase in destination weather severity adds **17.81 minutes** to the departure delay. |
+| `Precipitation_Origin`      | +8.92           | Each inch of precipitation at the origin adds **8.92 minutes** to the delay.         |
+| `Precipitation_Dest`        | +8.25           | Each inch of precipitation at the destination adds **8.25 minutes** to the delay.     |
+
+From these findings, we can quantify the degree by which severity and precipitation increase delay times. The results show a notable effect, with delays increasing by approximately 40 minutes across the severity scale, as weather patterns currently stand. This finding is particularly significant given the scale used for severity, and it suggests that an increase in weather severity could lead to even more substantial delays, raising concerns about the future resilience of the aviation industry. 
+
+
+
+# Hypothesis testing 
+To formalize our argument, we took the results from our multivariable linear regression and framed them within a hypothesis testing context. Starting with the null hypothesis that the predictor variables (weather severity and precipitation) had no effect on delay times we obtained a very small p-value, essentially close to zero. This provided a solid foundation for rejecting the null hypothesis at a significance level of 0.05. As a result, we were able to confidently conclude that weather severity does indeed impact flight delays in our dataset, laying the groundwork for the development of our prediction model.
+
+
+#Result Summary 
+![image](https://github.com/user-attachments/assets/463e7a19-555a-4cd4-8186-f153ac9a523c)
