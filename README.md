@@ -25,9 +25,10 @@ Flight data was loaded with careful attention to formatting and structure. The F
 
 We then executed a two-stage merge process:
 
-## Origin Airport Merge: The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
+## Origin Airport Merge: 
+The weather dataset was merged with the flight dataset using the origin airport IATA code and the extracted date as keys. This allowed us to append origin-weather features to each flight record.
 
-### Destination Airport Merge: 
+## Destination Airport Merge: 
 We repeated the process to append destination-weather features using the destination airport IATA code and the same date field. After these merges, we dropped any redundant or duplicate columns (e.g., multiple date or airport code fields), ensuring the final dataset was tidy and efficient for modeling.
 
 # Visualizations Before the Midterm Report 
