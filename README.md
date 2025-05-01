@@ -86,7 +86,7 @@ The plot preserves the expected near-1-to-1 link between average departure and a
 # correlation 
 To support our hypothesis that weather severity impacts flight delays, we first analyzed our dataset to explore potential correlations between increasing weather severity and delays. With further evaluation of the data and the decision to incorporate  weather-related cancellations into our delays, we were able to calculate a moderately positive correlation coefficient of 0.3199. While this value may not appear highly significant on its own, it has meaningful implications given the dataset's large size and relatively short time span. The strength of this correlation, especially in the presence of various confounding factors, provides promising support for our hypothesis. This was a promising development within our project before even considering the potential future increase in weather severity. 
 
-[insert correlation pic weathe sev. Vs avg del] 
+![Image](https://github.com/user-attachments/assets/beefe3c5-eeaa-4d59-8cd5-5e48605284ed)
 
 # Multivariable Linear Regression 
 To further establish our claims and strengthen our argument, we ran multivariable linear regression analysis on our data set with delays as the dependent variable and weather-related factors such as severity and precipitation as the independent variables. The results, presented in the table below, provide insight into how these weather conditions influence flight delays.
