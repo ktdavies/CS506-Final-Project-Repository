@@ -263,18 +263,30 @@ ten‑year climate scenarios.
 
 These scores provide a quantitative baseline for future scenario testing.
 
-# The Climate Data 
+# The Climate Data
 
-### Climate Change Cancelation and Delay Forecasting
+## Climate Change Scenario Forecasting
+To estimate how shifting weather patterns could impact flight operations, we advanced the hold-out portion of our weather-enhanced flight dataset ten years into the future. This adjustment involved applying cluster-level trend multipliers derived from our historical NOAA analysis. Specifically, we increased each record’s precipitation, severity, and event-window duration to reflect projected future conditions. Additionally, the calendar year was rolled forward by ten years while preserving each flight's original month and day. After these modifications, composite features were recalculated to ensure internal consistency in the data.
 
-To estimate how shifting weather patterns could shape operational performance, we took the hold‑out portion of our weather‑enhanced flight dataset and **synthetically advanced it ten years into the future**. Cluster‑level trend multipliers – extracted from our historical NOAA analysis – were applied to each record’s precipitation, severity and event‑window length, and the calendar year was rolled forward by +10 while preserving month and day.  Fresh composite features were then recalculated so the modified inputs remain physically consistent.
+Running our trained models on this synthetic future dataset revealed meaningful changes. The cancellation rate increased slightly, rising from 53.67% to 53.96%, while the mean delay climbed from 78.3 minutes to 82.7 minutes, representing an average increase of 4.5 minutes per flight. Although modest, these figures offer an early quantitative signal of operational risks associated with the intensification of weather patterns.
 
-Running the trained models on this future dataset yields:
+Purpose and Implementation of Climate Adjustments
+To simulate future climate impacts more realistically, we adjusted the dataset using two key modification strategies. First, historical precipitation values were increased by 10%. This decision was guided by projections from the Fourth National Climate Assessment (NCA4), which predicts up to a 10% increase in precipitation across much of the United States by the late 21st century, particularly during winter and spring months. Second, adjustments were made to account for more frequent and intense heavy precipitation events. Research, including reports from the EPA and peer-reviewed climate studies, indicates that extreme precipitation events have become more common and severe since the mid-20th century, a trend expected to continue.
 
-* **Cancellation rate:** 53.67 % → **53.96 %** ( +0.28 %)
-* **Mean delay:** 78.3 min → **82.7 min** ( +4.5 min)
+These changes were implemented by multiplying baseline precipitation data by a factor of 1.10 and by increasing both the likelihood and severity of simulated heavy precipitation events. While our current approach applies national-level adjustments for simplicity, future iterations of the model could incorporate regional differences to improve accuracy and represent localized climate dynamics more precisely.
 
-These figures provide an early quantitative view of the operational risk posed by continuing weather intensification.
+## References
+
+These adjustments were informed by several key sources, including Chapter 2 of the NCA4, the EPA’s Climate Indicators report on Heavy Precipitation, and relevant academic studies published in meteorological journals.
+
+NCA4 - Fourth National Climate Assessment, Chapter 2 (Climate)
+https://nca2018.globalchange.gov/chapter/2/
+
+EPA Climate Indicators - Heavy Precipitation
+https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation
+
+AMS Journal Article — Increasing Intensity and Frequency of Heavy Precipitation (2022)
+https://journals.ametsoc.org/view/journals/apme/61/11/JAMC-D-22-0008.1.xml
 
 # Prediction Model 
 
