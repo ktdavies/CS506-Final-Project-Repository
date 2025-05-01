@@ -51,8 +51,8 @@ In this visualization, we explored the more lighthearted question: “Which airl
 
 
 ![Image](https://github.com/user-attachments/assets/c3e841db-f6a8-4491-9965-881dae94bc58) 
+![Image](https://github.com/user-attachments/assets/5a5e2fd6-49f3-42ae-88c9-736bd08c8ca3)
 
-[insert pic] 
 
 # Establishing our argument within our data set  
 # correlation 
