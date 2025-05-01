@@ -105,6 +105,46 @@ From these findings, we can quantify the degree by which severity and precipitat
 # Hypothesis testing 
 To formalize our argument, we took the results from our multivariable linear regression and framed them within a hypothesis testing context. Starting with the null hypothesis that the predictor variables (weather severity and precipitation) had no effect on delay times we obtained a very small p-value, essentially close to zero. This provided a solid foundation for rejecting the null hypothesis at a significance level of 0.05. As a result, we were able to confidently conclude that weather severity does indeed impact flight delays in our dataset, laying the groundwork for the development of our prediction model.
 
+# Climate Data Supported Prediction Modeling 
+Our goal within this section of our project is to simulate how climate change will affect flight delays by adjusting our data set to reflect future climate predictions and building and running a prediction model on these new paramaters considering both total precipitation amounts and the frequency/intensity of heavy precipitation events.
+
+# The Climate Data 
+
+## Purpose
+To simulate future impacts of climate change on flight delays, we adjust historical precipitation data both in overall amount and in frequency/intensity of heavy precipitation events.
+
+## Adjustments
+
+### 1. Future Scenario Adjustment
+- **Adjustment**: +10% to historical precipitation values
+- **Source**: [NCA4 - Fourth National Climate Assessment, Chapter 2](https://nca2018.globalchange.gov/chapter/2/)
+- **Reason**: Under high emissions scenarios (RCP8.5), models project up to a 10% increase in precipitation across much of the United States by late 21st century, particularly in winter and spring.
+
+### 2. Heavy Precipitation Events Adjustment
+- **Adjustment**:
+  - Increase **frequency** of heavy precipitation days (2% increase per decade)
+  - Increase **intensity** (amount of rain per extreme event)
+- **Source**:
+  - [NCA4 - Fourth National Climate Assessment, Chapter 2](https://nca2018.globalchange.gov/chapter/2/)
+  - [EPA Climate Indicators - Heavy Precipitation](https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation)
+  - https://journals.ametsoc.org/view/journals/apme/61/11/JAMC-D-22-0008.1.xml?utm_source=chatgpt.com
+- **Reason**: The intensity and frequency of extreme precipitation events have increased significantly since the mid-20th century, and this trend is expected to continue under future warming scenarios.
+
+## Implementation Summary
+- Apply a **1.10 multiplication factor** to baseline precipitation data for future projections.
+- Increase the modeled **probability and severity of heavy precipitation events** in simulations.
+
+## Additional Notes
+- While a national-level adjustment is used for simplicity, future work could apply **regional adjustment factors** for greater accuracy.
+
+---
+
+### References
+- [NCA4 - Fourth National Climate Assessment, Chapter 2](https://nca2018.globalchange.gov/chapter/2/)
+- [EPA Climate Indicators - Heavy Precipitation](https://www.epa.gov/climate-indicators/climate-change-indicators-heavy-precipitation)
+
+
+
 
 # Result Summary 
 ![image](https://github.com/user-attachments/assets/463e7a19-555a-4cd4-8186-f153ac9a523c)
