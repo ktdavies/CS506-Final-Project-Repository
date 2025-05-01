@@ -21,7 +21,7 @@ def main():
         'Cold': 'Severe',
         'Hail': 'Severe',
     })
-    df['Severity_Origin'].fillna('Mild', inplace=True)
+    df['Severity_Origin'] = df['Severity_Origin'].fillna('Mild')
 
     df['Severity_Dest'] = df['WeatherType_Dest'].map({
         'Clear': 'Mild',
@@ -33,7 +33,7 @@ def main():
         'Cold': 'Severe',
         'Hail': 'Severe',
     })
-    df['Severity_Dest'].fillna('Mild', inplace=True)
+    df['Severity_Dest'] = df['Severity_Dest'].fillna('Mild')
 
     # Convert weather severity to numerical values
     severity_map = {'Mild': 1, 'Moderate': 2, 'Severe': 3}
@@ -41,13 +41,14 @@ def main():
     df['Severity_Dest_numerical'] = df['Severity_Dest'].map(severity_map)
 
     # Fill any remaining missing values in Severity columns (just in case)
-    df['Severity_Origin_numerical'].fillna(df['Severity_Origin_numerical'].mode()[0], inplace=True)
-    df['ARR_DELAY'].fillna(df['ARR_DELAY'].mean(), inplace=True)
-    df['DEP_DELAY'].fillna(df['DEP_DELAY'].mean(), inplace=True)
+    df['Severity_Origin_numerical'] = df['Severity_Origin_numerical'].fillna(df['Severity_Origin_numerical'].mode()[0])
+    df['ARR_DELAY'] = df['ARR_DELAY'].fillna(df['ARR_DELAY'].mean())
+    df['DEP_DELAY'] = df['DEP_DELAY'].fillna(df['DEP_DELAY'].mean())
 
     # Step 2: Treat weather-related cancellations as large delays
-    df.loc[df['CANCELLATION_CODE'] == 'B', 'ARR_DELAY'] = 400
-    df.loc[df['CANCELLATION_CODE'] == 'B', 'DEP_DELAY'] = 400
+    if 'CANCELLATION_CODE' in df.columns:
+        df.loc[df['CANCELLATION_CODE'] == 'B', 'ARR_DELAY'] = 400
+        df.loc[df['CANCELLATION_CODE'] == 'B', 'DEP_DELAY'] = 400
 
     # Step 3: Convert FL_DATE to datetime
     df['FL_DATE'] = pd.to_datetime(df['FL_DATE'])
