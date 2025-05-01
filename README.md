@@ -41,6 +41,7 @@ The plots below highlight the cities with the highest average arrival and depart
 
 
 ![Image](https://github.com/user-attachments/assets/4b040e8e-9667-4c27-b0e4-31c687498c7d)
+![Image](https://github.com/user-attachments/assets/e1974522-d2e2-4a46-9f4b-ff1bb7770698)
 
 
 
