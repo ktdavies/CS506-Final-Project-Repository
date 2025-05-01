@@ -315,3 +315,5 @@ Results showed a modest but meaningful rise in disruption indicators. The cancel
 
 # Result Summary 
 
+Our findings suggest that climate change-driven increases in precipitation and severe weather will modestly, yet meaningfully, exacerbate air travel disruption. Simulated projections reveal a slight rise in cancellation rates (+0.28%) and a measurable increase in average delay per flight (+4.5 minutes). Although these changes may appear incremental, when scaled across thousands of daily flights, they translate into significant cumulative operational and economic consequences. These results underscore the growing strain that intensifying weather patterns are likely to place on aviation reliability and scheduling in the years ahead.
+
