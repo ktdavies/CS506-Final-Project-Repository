@@ -53,6 +53,7 @@ In this visualization, we explored the more lighthearted question: “Which airl
 ![Image](https://github.com/user-attachments/assets/5a5e2fd6-49f3-42ae-88c9-736bd08c8ca3)
 
 Additionally we compiled a DBSCAN with the same goal in mind and achieved these results. 
+The plot preserves the expected near-1-to-1 link between average departure and arrival delays, validating our data joins, yet small offsets remain: several carriers land marginally earlier or later than their take-off delay would suggest. These nuances appear consistently within the airline-level clusters identified by our models, indicating that en-route practices and schedule padding vary across groups as well as individual airlines.
 ![Image](https://github.com/user-attachments/assets/86331c7d-1800-4932-a617-a533392fdcda)
 
 ### Here is a key to easily identify the airlines! 
