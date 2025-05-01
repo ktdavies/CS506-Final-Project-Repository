@@ -146,8 +146,127 @@ And then the last part measures how much weather duration and severity are chang
 # Climate Data Supported Prediction Modeling 
 Our goal within this section of our project is to simulate how climate change will affect flight delays by adjusting our data set to reflect future climate predictions and building and running a prediction model on these new paramaters considering both total precipitation amounts and the frequency/intensity of heavy precipitation events.
 
-# The Climate Data 
 
+## Data Cleaning & Encoding Workflow
+
+The raw flight–weather merge (`cleaned.csv`) arrives with more than two dozen columns, many of which
+are irrelevant to delay‑due‑weather modelling.  We retain just the fields needed for our analysis
+(listed explicitly in the load statement) and parse all timestamp columns as true datetimes.
+
+### 1  Filter out the COVID anomaly
+Traffic patterns during Mar‑2020 → Dec‑2021 diverge sharply from the long‑term trend.  
+All rows whose `flDate` falls inside that window are removed before any other processing, leaving
+a 2019 and 2022‑2023 core sample.
+
+### 2  Normalise the target delay column
+* Missing `delayDueWeather` values are set to 0.  
+* Flights cancelled specifically for weather (`cancelled == 1` **and** `cancellationCode == 'B'`)
+  are re‑expressed as a synthetic delay of **400 minutes** so the downstream models can treat
+  cancellations and long delays on a common numeric scale.
+
+### 3  Isolate weather‑affected flights
+Rows with `delayDueWeather == 0` are dropped, yielding a compact `df_weather`
+DataFrame that contains only flights where weather was reported to matter.
+
+### 4  Remove unusable weather descriptors
+Any residual string code `"UNK"` (or the sentinel –1 that replaced it earlier) in the
+origin or destination weather descriptors is eliminated.  
+Rows where *both* origin and destination weather blocks are completely missing are also discarded.
+
+### 5  Block‑level missing‑value imputation
+For flights where **one side** (origin *or* destination) has no weather measurements at all,
+we fill that block with neutral placeholders:
+
+```
+startTime = -1   endTime = -1
+weatherType = -1   severity = -1   precipitation = 0
+```
+
+This preserves row count while signalling “no weather event recorded” to the models.
+
+### 6  Numerical re‑encoding
+* **Precipitation**: NaNs → 0 mm.  
+* **Event times**: each datetime is mapped to *minutes from midnight* (float) with –1 for missing.  
+* **Severity**: `"Light"→0.0`, `"Moderate"→1.0`, `"Heavy"→2.0`, –1.0 for missing.  
+* **Weather type**: every unique string token is assigned the next integer ID, cast to
+  `float32`; the missing sentinel is –1.0.
+
+
+
+## Predictive Modeling with Calendar‑Aware Features
+
+The notebook finishes the data‑engineering pipeline by training two production‑ready
+models – one to estimate **weather‑driven departure delay minutes** and another to
+flag **full cancellations** – while explicitly incorporating calendar context
+(year / month / day) alongside the meteorological signals that were engineered
+earlier in the workflow.
+
+### 1 Delay‑Severity Regressor (XGBoost, GPU)
+
+* **Sample** All flights that experienced *some* weather impact
+  (`delayDueWeather > 0`) *but were not cancelled*.  
+* **Severity weights** Each encoded `weatherType` is mapped to a continuous
+  multiplier (e.g. Snow = 3, Rain = 2, Fog = 1) and combined with measured
+  precipitation to form quantitative **impact scores** for origin and
+  destination stations.  
+* **Calendar enrichment** `flDate` is decomposed into `year`, `month`, and
+  `day`, giving the learner seasonality awareness without leaking exact dates.  
+* **Pipeline**  
+  • Numerical columns → z‑score scaling  
+  • Categorical columns (airline, airports, weatherType) → sparse one‑hot  
+  • XGBoost 2.0 histogram tree booster (`device="cuda"`) with 200 trees, depth 6
+    and 0.10 learning‑rate.  
+* **Performance** Model quality is logged with RMSE and R² on a 20 % hold‑out
+  split, and the fitted object is persisted as
+  `cuda_xgb_severity_model.joblib`.
+
+### 2 Cancellation Classifier (Logistic, Balanced)
+
+* **Target** Binary flag where a weather cancellation (“B” code) is encoded as
+  `is_canceled = 1`.  
+* **Feature space** Same operational, meteorological and calendar attributes
+  used for regression, but with *severity* and *weatherType* already in numeric
+  form.  
+* **Pre‑processing**  
+  • Flight/airport identifiers and weather codes are treated as categories and
+    one‑hot encoded.  
+  • All other columns – including the calendar trio – are standardized.  
+* **Model** ℓ₂‑regularised logistic regression (`C = 0.01`) with
+  `class_weight="balanced"` to offset the rarity of cancellations.  
+* **Evaluation & artefact** A full classification report is printed for the
+  hold‑out set, and the trained pipeline is stored as
+  `logreg_balanced_01.joblib`.
+
+Both models are therefore **calendar‑aware**, **fully encoded**, and saved to
+disk, ready to be plugged into the forward‑simulation notebooks that explore
+ten‑year climate scenarios.
+
+
+### 3 Model Performance Snapshot _(validation split)_
+
+| Model | Metric | Value |
+|-------|--------|-------|
+| **Delay‑Severity XGBoost** | RMSE | **74.21 min** |
+|  | R² | **0.699** |
+| **Cancellation Logistic Reg.** | Accuracy | **0.70** |
+|  | Precision (cancel=1) | 0.79 |
+|  | Recall (cancel=1) | 0.70 |
+|  | Macro F1 | 0.70 |
+
+These scores provide a quantitative baseline for future scenario testing.
+
+# The Climate Data 
+### Climate‑change scenario forecasting
+
+To estimate how shifting weather patterns could shape operational performance, we took the hold‑out portion of our weather‑enhanced flight dataset and **synthetically advanced it ten years into the future**.  
+Cluster‑level trend multipliers – extracted from our historical NOAA analysis – were applied to each record’s precipitation, severity and event‑window length, and the calendar year was rolled forward by +10 while preserving month and day.  Fresh composite features were then recalculated so the modified inputs remain physically consistent.
+
+Running the trained models on this future dataset yields:
+
+* **Cancellation rate:** 53.67 % → **53.96 %** ( +0.28 %)
+* **Mean delay:** 78.3 min → **82.7 min** ( +4.5 min)
+
+These figures provide an early quantitative view of the operational risk posed by continuing weather intensification.
 
 ## Purpose
 To simulate future impacts of climate change on flight delays, we adjust historical precipitation data both in overall amount and in frequency/intensity of heavy precipitation events.
