@@ -57,6 +57,27 @@ Additionally we compiled a DBSCAN with the same goal in mind and achieved these 
 ![Image](https://github.com/user-attachments/assets/86331c7d-1800-4932-a617-a533392fdcda)
 
 Here is a key to easily identify the airlines! 
+| Airline Code | Airline            |
+|--------------|--------------------|
+| EV           | Envoy Air          |
+| B6           | JetBlue Airways    |
+| YV           | Mesa Air Group     |
+| OO           | SkyWest Airlines   |
+| F9           | Frontier Airlines  |
+| UA           | United Airlines    |
+| G4           | Allegiant Air      |
+| AA           | American Airlines  |
+| OH           | PSA Airlines       |
+| MQ           | Envoy Air          |
+| NK           | Spirit Airlines    |
+| WN           | Southwest Airlines |
+| DL           | Delta Air Lines    |
+| 9E           | Endeavor Air       |
+| YX           | Air Wisconsin      |
+| QX           | Horizon Air        |
+| AS           | Alaska Airlines    |
+| HA           | Hawaiian Airlines  |
+
 
 
 
