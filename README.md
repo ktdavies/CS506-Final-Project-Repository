@@ -4,6 +4,12 @@
 
 #  Building and Running our Code  
 
+Welcome to the CS506 Final Project repository! We’re excited to share our work with you. Before you dive in we’d like to provide some important details about our GitHub repository.
+
+Due to the large size of our original dataset, we were unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller datasets representative of our larger dataset. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project.
+
+To explore further, simply download the runOurCode.py file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
+We hope you enjoy exploring our project!
 
 # Project Description 
 
