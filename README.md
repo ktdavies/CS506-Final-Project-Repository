@@ -304,5 +304,31 @@ To simulate future impacts of climate change on flight delays, we adjust histori
 
 # Prediction Model 
 
+To quantify and forecast weather-induced disruption, we constructed a two-part predictive system: a delay severity estimator and a cancellation classifier. Together, they allow flight-level projections under both observed and simulated climate scenarios.
+
+## Delay Severity Model
+
+The delay model employs XGBoost regression with GPU acceleration to manage large datasets and complex feature interactions. Training was limited to flights affected by weather but not cancelled, ensuring the model learned only from operational delay cases.  
+
+Feature engineering played a central role. Impact scores were created by combining precipitation amounts, severity ratings, and weather types to numerically encode meteorological conditions at both origin and destination airports. Calendar features (year, month, day) were included to introduce seasonality into the learning process. Numerical variables were standardized and categorical variables, such as airline and airport codes, were one-hot encoded.  
+
+The model used 200 trees with a depth of 6 and a learning rate of 0.10 to strike a balance between flexibility and generalization. On the validation set, it achieved an RMSE of 74.21 minutes and an R² of 0.699, demonstrating reasonable predictive strength in a domain where delays are highly stochastic. The trained model was stored for forward-looking scenario testing.
+
+## Cancellation Classifier
+
+Complementing the delay regressor, a logistic regression classifier was developed to predict binary weather-related cancellations. Flights with a cancellation code "B" (weather) were flagged as positive cases. The classifier used the same weather and calendar features as the delay model, retaining consistency across the pipeline.
+
+Due to the imbalance in cancellation occurrences, ℓ₂ regularization and class weighting were applied. On validation, the classifier returned an accuracy of 0.70, with precision and recall for cancellation events both near 0.70. These results reflect effective calibration between false positives and false negatives in a domain with uneven target distribution.
+
+## Future Scenario Simulation
+
+Both models were applied to a synthetically modified dataset reflecting projected climate conditions ten years ahead. Precipitation was increased by 10%, the frequency and intensity of heavy precipitation events were augmented, and the calendar was advanced while maintaining seasonal structure.
+
+Results showed a modest but meaningful rise in disruption indicators. The cancellation rate edged up from 53.67% to 53.96%, while the mean delay increased from 78.3 minutes to 82.7 minutes, an average escalation of 4.5 minutes per flight. These shifts underline the operational vulnerabilities posed by a warming climate.
+
+## Conclusion
+
+This modeling framework captures both current and future weather impacts on air travel. By combining meteorological detail, temporal context, and robust machine learning pipelines, the models offer a pragmatic yet rigorous approach to forecasting delay and cancellation risks in an era of intensifying climate challenges.
+
 # Result Summary 
 
