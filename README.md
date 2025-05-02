@@ -3,19 +3,19 @@ Link to YouTube presentation: https://youtu.be/j6PCg8PF1Rg
 # Group Members: 
    Kaitlyn Davies, Michael Ahrens, Mehmet Sarioglu
 
-# Welcome!
-Welcome to the CS506 Final Project repository! We’re excited to share our work with you. Before you dive in we’d like to provide some important details about our GitHub repository.
+# Welcome to our Repository!
+Welcome to the CS506 Final Project repository! We’re excited to share our work with you. Before you dive in we’d like to provide some important details about our GitHub repository below in the Building and Running our Code section.
 
 # Building and Running our Code  
 
-Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller subsets of our larger dataset. These sets we're designed to be as large as github could handle to try our best to preserve our projects results. Professor Galletti and Ta's have confirmed this solution as valid. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. Links to our larger Kaggle datasets can be found in our references section of our readme. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
+Due to the large size of our original dataset, we are unable to upload it to GitHub in its entirety. To address this, we’ve created a runOurCode.py file which acts as our "makefile" and works with smaller subsets of our larger datasets. These sets were designed to be as large as GitHub could handle to best to preserve our projects results. Professor Galletti and TA's have confirmed this solution as valid. While the results you generate using this file may not be as extreme as our findings, they will follow the same overall trend as the results from the larger data set that we present throughout our project. Links to our larger Kaggle datasets can be found in our references section of our ReadMe. Origional files run with the larger data sets can be found in the LargeDSProccessing folder within this repository.
 
-To explore further, simply download the **runOurCode.py** file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
+To explore further, simply download the **runOurCode.py** file and run it. This script will automatically import all necessary dependencies and present you with our visualizations. We’ve also included a test file as part of a GitHub workflow to validate our prediction model as required.
 We hope you enjoy exploring our project!
 
 # Project Description 
 
-For our final project, we explored  flight performance and weather conditions using data sourced from Kaggle and Climate Change Data. Our analysis focuses on how differing weather types, their severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.
+For our final project, we explored flight performance and weather patterns in the United States using data sourced from Kaggle and other reliable sources such as NOAA. Our analysis focuses on how differing weather types, severity, and geographic locations influence delay frequency and duration. We took great interest in examining how increasingly extreme weather patterns driven by the climate crisis could challenge the resilience of the American aviation industry, potentially making air travel more unpredictable and difficult in the years to come.
 
 # Preprocessing Data 
 A critical part of our initial efforts was constructing a clean dataset by merging airport, weather, and flight records. This process involved extensive cleaning to resolve inconsistencies in time formats, standardize airport codes, and align data schemas, ensuring accurate and meaningful analysis across all dimensions.
