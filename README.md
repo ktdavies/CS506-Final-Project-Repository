@@ -8,7 +8,7 @@ Welcome to the CS506 Final Project repository! We’re excited to share our work
 
 # Building and Running our Code  
 
-Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller subsets of our larger dataset. These sets we're designed to be as large as github could handel to try our best to preserve our projects results. Professor Galletti and Ta's have confirmed this solution as valid. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. Links to our larger Kaggle datasets can be found in our references section of our readme. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
+Due to the large size of our original dataset, we are unable to upload it in its entirety. To address this, we’ve created a runOurCode.py file that works with smaller subsets of our larger dataset. These sets we're designed to be as large as github could handle to try our best to preserve our projects results. Professor Galletti and Ta's have confirmed this solution as valid. While the results you generate using this file may not be as extreme, they will follow the same overall trend as our results from the original data presented throughout our project. Links to our larger Kaggle datasets can be found in our references section of our readme. The data processing we did on our larger data files can be found in the LargeDSProccessing folder.
 
 To explore further, simply download the **runOurCode.py** file and run it. This script will clone the repository and automatically import all necessary dependencies. We’ve also included a test file as part of a GitHub workflow to validate our prediction model.
 We hope you enjoy exploring our project!
@@ -165,40 +165,40 @@ The raw flight–weather merge (`cleaned.csv`) arrives with more than two dozen 
 are irrelevant to delay‑due‑weather modelling.  We retain just the fields needed for our analysis
 (listed explicitly in the load statement) and parse all timestamp columns as true datetimes.
 
-### 1.  Filter out the COVID anomaly
-Traffic patterns during Mar‑2020 → Dec‑2021 diverge sharply from the long‑term trend.  
+### 1.  Filter out the COVID anomaly
+Traffic patterns during Mar‑2020 → Dec‑2021 diverge sharply from the long‑term trend.  
 All rows whose `flDate` falls inside that window are removed before any other processing, leaving
-a 2019 and 2022‑2023 core sample.
+a 2019 and 2022‑2023 core sample.
 
-### 2.  Normalise the target delay column
-* Missing `delayDueWeather` values are set to 0.  
-* Flights cancelled specifically for weather (`cancelled == 1` **and** `cancellationCode == 'B'`)
-  are re‑expressed as a synthetic delay of **400 minutes** so the downstream models can treat
+### 2.  Normalise the target delay column
+* Missing `delayDueWeather` values are set to 0.  
+* Flights cancelled specifically for weather (`cancelled == 1` **and** `cancellationCode == 'B'`)
+  are re‑expressed as a synthetic delay of **400 minutes** so the downstream models can treat
   cancellations and long delays on a common numeric scale.
 
-### 3.  Isolate weather‑affected flights
-Rows with `delayDueWeather == 0` are dropped, yielding a compact `df_weather`
+### 3.  Isolate weather‑affected flights
+Rows with `delayDueWeather == 0` are dropped, yielding a compact `df_weather`
 DataFrame that contains only flights where weather was reported to matter.
 
-### 4.  Remove unusable weather descriptors
-Any residual string code `"UNK"` (or the sentinel –1 that replaced it earlier) in the
+### 4.  Remove unusable weather descriptors
+Any residual string code `"UNK"` (or the sentinel –1 that replaced it earlier) in the
 origin or destination weather descriptors is eliminated.  
 Rows where *both* origin and destination weather blocks are completely missing are also discarded.
 
-### 5.  Block‑level missing‑value imputation
+### 5.  Block‑level missing‑value imputation
 For flights where **one side** (origin *or* destination) has no weather measurements at all,
 we fill that block with neutral placeholders:
 
 ```
-startTime = -1   endTime = -1
-weatherType = -1   severity = -1   precipitation = 0
+startTime = -1   endTime = -1
+weatherType = -1   severity = -1   precipitation = 0
 ```
 
 This preserves row count while signalling “no weather event recorded” to the models.
 
-### 6.  Numerical re‑encoding
-* **Precipitation**: NaNs → 0 mm.  
-* **Event times**: each datetime is mapped to *minutes from midnight* (float) with –1 for missing.  
+### 6.  Numerical re‑encoding
+* **Precipitation**: NaNs → 0 mm.  
+* **Event times**: each datetime is mapped to *minutes from midnight* (float) with –1 for missing.  
 * **Severity**: `"Light"→0.0`, `"Moderate"→1.0`, `"Heavy"→2.0`, –1.0 for missing.  
 * **Weather type**: every unique string token is assigned the next integer ID, cast to
   `float32`; the missing sentinel is –1.0.
@@ -213,9 +213,9 @@ earlier in the workflow.
 ### 1. Delay‑Severity Regressor (XGBoost, GPU)
 
 * **Sample** All flights that experienced *some* weather impact
-  (`delayDueWeather > 0`) *but were not cancelled*.  
+  (`delayDueWeather > 0`) *but were not cancelled*.  
 * **Severity weights** Each encoded `weatherType` is mapped to a continuous
-  multiplier (e.g. Snow = 3, Rain = 2, Fog = 1) and combined with measured
+  multiplier (e.g. Snow = 3, Rain = 2, Fog = 1) and combined with measured
   precipitation to form quantitative **impact scores** for origin and
   destination stations.  
 * **Calendar enrichment** `flDate` is decomposed into `year`, `month`, and
@@ -223,7 +223,7 @@ earlier in the workflow.
 * **Pipeline**  
   • Numerical columns → z‑score scaling  
   • Categorical columns (airline, airports, weatherType) → sparse one‑hot  
-  • XGBoost 2.0 histogram tree booster (`device="cuda"`) with 200 trees, depth 6
+  • XGBoost 2.0 histogram tree booster (`device="cuda"`) with 200 trees, depth 6
     and 0.10 learning‑rate.  
 * **Performance** Model quality is logged with RMSE and R² on a 20 % hold‑out
   split, and the fitted object is persisted as
@@ -232,7 +232,7 @@ earlier in the workflow.
 ### 2. Cancellation Classifier (Logistic, Balanced)
 
 * **Target** Binary flag where a weather cancellation (“B” code) is encoded as
-  `is_canceled = 1`.  
+  `is_canceled = 1`.  
 * **Feature space** Same operational, meteorological and calendar attributes
   used for regression, but with *severity* and *weatherType* already in numeric
   form.  
@@ -240,7 +240,7 @@ earlier in the workflow.
   • Flight/airport identifiers and weather codes are treated as categories and
     one‑hot encoded.  
   • All other columns – including the calendar trio – are standardized.  
-* **Model** ℓ₂‑regularised logistic regression (`C = 0.01`) with
+* **Model** ℓ₂‑regularised logistic regression (`C = 0.01`) with
   `class_weight="balanced"` to offset the rarity of cancellations.  
 * **Evaluation & artefact** A full classification report is printed for the
   hold‑out set, and the trained pipeline is stored as
@@ -257,10 +257,10 @@ ten‑year climate scenarios.
 |-------|--------|-------|
 | **Delay‑Severity XGBoost** | RMSE | **74.21 min** |
 |  | R² | **0.699** |
-| **Cancellation Logistic Reg.** | Accuracy | **0.70** |
+| **Cancellation Logistic Reg.** | Accuracy | **0.70** |
 |  | Precision (cancel=1) | 0.79 |
 |  | Recall (cancel=1) | 0.70 |
-|  | Macro F1 | 0.70 |
+|  | Macro F1 | 0.70 |
 
 These scores provide a quantitative baseline for future scenario testing.
 
@@ -325,4 +325,6 @@ https://www.kaggle.com/datasets/sobhanmoosavi/us-weather-events
 Kaggle Flight Delay and Cancellation Dataset 
 https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset-2019-2023
 
+
+![image](https://github.com/user-attachments/assets/14d282ee-130f-4277-8040-e6ec39e19274)
 
